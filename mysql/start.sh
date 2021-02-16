@@ -1,8 +1,24 @@
-#!bin/bash
+#!/bin/bash
 
-service mysql start
-echo "CREATE DATABASE wordpress;" | mysql -u root
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost';" | mysql -u root
-echo "FLUSH PRIVILEGES;" | mysql -u root
-echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" | mysql -u root
-mysql wordpress -u root < /root/wordpress.sql
+# Config Openrc and start Mariadb
+mv /etc/my.cnf.d/mariadb-server.cnf /etc/my.cnf.d/old_mariadb-server.cnf
+sed "s/^skip-networking/#&/" /etc/my.cnf.d/old_mariadb-server.cnf > /etc/my.cnf.d/mariadb-server.cnf
+rm /etc/my.cnf.d/old_mariadb-server.cnf
+openrc
+touch /run/openrc/softlevel
+/etc/init.d/mariadb setup
+rc-service mariadb start
+
+# Create Database wordpress
+mysql << EOF 
+CREATE DATABASE IF NOT EXISTS wordpress;
+CREATE USER 'root';
+GRANT ALL ON wordpress.* TO 'root' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EOF
+
+# Add Database
+#if [ ! -f /var/lib/mysql/wordpress ]; then
+#	mysql -h localhost wordpress < ./wordpress.sql
+#fi
+tail -f /dev/null

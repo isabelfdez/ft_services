@@ -6,7 +6,7 @@
 #    By: isfernan <isfernan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/12 16:13:44 by isfernan          #+#    #+#              #
-#    Updated: 2021/02/12 16:22:45 by isfernan         ###   ########.fr        #
+#    Updated: 2021/02/16 18:25:33 by isfernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,14 @@ RUN mkdir www/ &&\
 
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz && \
     tar -xvf phpMyAdmin-5.0.4-all-languages.tar.gz && \
-    mv phpMyAdmin-5.0.4-all-languages.tar.gz phpmyadmin && \
+    mv phpMyAdmin-5.0.4-all-languages phpmyadmin && \
     mv phpmyadmin /www && \
     rm phpMyAdmin-5.0.4-all-languages.tar.gz
 
-#COPY config.inc.php		/www/phpMyAdmin-5.0.2-all-languages/
+COPY config.inc.php	/www/phpmyadmin/
 
-#EXPOSE 5000
+RUN rm /www/phpmyadmin/config.sample.inc.php
 
-#CMD php -S 0.0.0.0:5000 -t /www/phpMyAdmin-5.0.2-all-languages
+EXPOSE 5000
+
+CMD php -S 0.0.0.0:5000 -t /www/phpmyadmin
