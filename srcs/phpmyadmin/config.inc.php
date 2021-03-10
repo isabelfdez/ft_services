@@ -16,6 +16,7 @@ declare(strict_types=1);
  * cookie. Needs to be 32 chars long.
  */
 $cfg['blowfish_secret'] = '9/[2}jg=,1efh,vj9b,JP-Bx,3snAuyi'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['PmaAbsoluteUri'] = '/phpmyadmin';
 
 /**
  * List of env variables

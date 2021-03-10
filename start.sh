@@ -12,8 +12,8 @@ clean() {
 	kubectl delete -f srcs/grafana.yaml >> logs.txt
 	kubectl delete -f srcs/grafana-config.yaml >> logs.txt
 	kubectl delete -f srcs/influxdb.yaml >> logs.txt
-	kubectl delete -f srcs/telegraf.yaml >> logs.txt
-	kubectl delete -f srcs/telegraf-config.yaml >> logs.txt
+	#kubectl delete -f srcs/telegraf.yaml >> logs.txt
+	#kubectl delete -f srcs/telegraf-config.yaml >> logs.txt
 	kubectl delete -f srcs/nginx.yaml >> logs.txt
 	kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml >> logs.txt
 
@@ -29,7 +29,7 @@ fclean() {
 	docker rmi -f services-wordpress >> logs.txt
 	docker rmi -f services-grafana >> logs.txt
 	docker rmi -f services-influxdb >> logs.txt
-	docker rmi -f services-telegraf >> logs.txt
+	#docker rmi -f services-telegraf >> logs.txt
 	docker rmi -f services-nginx >> logs.txt
 	rm logs.txt
 	minikube stop
@@ -119,7 +119,7 @@ printf "🛠  InfluxDB done...\n"
 #kubectl apply -f srcs/telegraf-config.yaml >> logs.txt
 #kubectl apply -f srcs/telegraf.yaml >> logs.txt
 #printf "🛠  Telegraf done...\n"
-#kubectl apply -f srcs/grafana-config.yaml >> logs.txt
+kubectl apply -f srcs/grafana-config.yaml >> logs.txt
 kubectl apply -f srcs/grafana.yaml >> logs.txt
 printf "🛠  Grafana done...\n"
 kubectl apply -f srcs/nginx.yaml >> logs.txt

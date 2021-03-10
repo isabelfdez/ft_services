@@ -20,6 +20,6 @@ EOF
 
 # Add Database
 if [ ! -f /var/lib/mysql/wordpress ]; then
-	mysql -h localhost wordpress < ./wordpress.sql
+	mysql wordpress -u root < wordpress.sql
 fi
 tail -f /dev/null
