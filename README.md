@@ -1,5 +1,4 @@
 # ft_services-42
-100/100
 
 ## Introduction
 The project consists of setting up an infrastructure of different services. To do this, you
@@ -27,3 +26,7 @@ To run the services you need to have installed [**VirtualBox**](https://www.virt
 - To run the services: sh start.sh
 - To shut down the services: sh start.sh clean
 - To remove the minikube: sh start.sh fclean
+
+## Status
+
+Finished :white_check_mark:
